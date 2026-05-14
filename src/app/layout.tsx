@@ -11,6 +11,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  verification: {
+    google: "2FL3q88IIuMuQOXKE1pDzkaTdDIJNF5DKUrbb_sZH4k",
+  },
   title: {
     default: "BlueOcean — Untapped Keywords Your Blog Can Actually Rank For",
     template: "%s | BlueOcean",
