@@ -1,4 +1,4 @@
-import type { SupabaseClient } from "@supabase/supabase-js";
+import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
@@ -14,7 +14,6 @@ let _client: SupabaseClient | null = null;
 function getClient(): SupabaseClient | null {
   if (!isConfigured) return null;
   if (!_client) {
-    const { createClient } = require("@supabase/supabase-js");
     _client = createClient(supabaseUrl, supabaseAnonKey);
   }
   return _client;
