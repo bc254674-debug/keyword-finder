@@ -1,4 +1,4 @@
-import { createClient } from "@supabase/supabase-js";
+import type { SupabaseClient } from "@supabase/supabase-js";
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
@@ -9,12 +9,20 @@ const isConfigured =
   supabaseAnonKey &&
   !supabaseAnonKey.includes("your-");
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+let _client: SupabaseClient | null = null;
 
-/* ── If Supabase is not yet configured, silently return empty ── */
+function getClient(): SupabaseClient | null {
+  if (!isConfigured) return null;
+  if (!_client) {
+    const { createClient } = require("@supabase/supabase-js");
+    _client = createClient(supabaseUrl, supabaseAnonKey);
+  }
+  return _client;
+}
 
 export async function getCategories() {
-  if (!isConfigured) return [];
+  const supabase = getClient();
+  if (!supabase) return [];
   const { data, error } = await supabase
     .from("categories")
     .select("*")
@@ -24,7 +32,8 @@ export async function getCategories() {
 }
 
 export async function getTrendingKeywords(limit = 8) {
-  if (!isConfigured) return [];
+  const supabase = getClient();
+  if (!supabase) return [];
   const { data, error } = await supabase
     .from("keywords")
     .select("*, category:categories(*)")
@@ -40,18 +49,16 @@ export async function getKeywordsByCategory(
   page = 1,
   limit = 20
 ) {
-  if (!isConfigured) return { keywords: [], total: 0 };
+  const supabase = getClient();
+  if (!supabase) return { keywords: [], total: 0 };
   const { data: catData } = await supabase
     .from("categories")
     .select("id")
     .eq("slug", categorySlug)
     .single();
-
   if (!catData) return { keywords: [], total: 0 };
-
   const from = (page - 1) * limit;
   const to = from + limit - 1;
-
   const { data, count, error } = await supabase
     .from("keywords")
     .select("*, category:categories(*)", { count: "exact" })
@@ -63,7 +70,8 @@ export async function getKeywordsByCategory(
 }
 
 export async function getKeywordBySlug(slug: string) {
-  if (!isConfigured) return null;
+  const supabase = getClient();
+  if (!supabase) return null;
   const { data, error } = await supabase
     .from("keywords")
     .select("*, category:categories(*)")
@@ -74,7 +82,8 @@ export async function getKeywordBySlug(slug: string) {
 }
 
 export async function getAllKeywordSlugs() {
-  if (!isConfigured) return [];
+  const supabase = getClient();
+  if (!supabase) return [];
   const { data, error } = await supabase
     .from("keywords")
     .select("slug, last_updated");
@@ -83,7 +92,8 @@ export async function getAllKeywordSlugs() {
 }
 
 export async function getAllCategorySlugs() {
-  if (!isConfigured) return [];
+  const supabase = getClient();
+  if (!supabase) return [];
   const { data, error } = await supabase
     .from("categories")
     .select("slug");
@@ -96,17 +106,15 @@ export async function getKeywordsPaginated(
   limit = 20,
   filters?: { language?: string; categoryId?: number }
 ) {
-  if (!isConfigured) return { keywords: [], total: 0 };
+  const supabase = getClient();
+  if (!supabase) return { keywords: [], total: 0 };
   const from = (page - 1) * limit;
   const to = from + limit - 1;
-
   let query = supabase
     .from("keywords")
     .select("*, category:categories(*)", { count: "exact" });
-
   if (filters?.language) query = query.eq("language", filters.language);
   if (filters?.categoryId) query = query.eq("category_id", filters.categoryId);
-
   const { data, count, error } = await query
     .order("opportunity_score", { ascending: false })
     .range(from, to);
