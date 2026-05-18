@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import MonetagAd from "@/components/ads/MonetagAd";
 import "@/styles/globals.css";
 
 const inter = Inter({
@@ -16,11 +17,11 @@ export const metadata: Metadata = {
     google: "2FL3q88IIuMuQOXKE1pDzkaTdDIJNF5DKUrbb_sZH4k",
   },
   title: {
-    default: "BlueOcean — Untapped Keywords Your Blog Can Actually Rank For",
-    template: "%s | BlueOcean",
+    default: "KeywordFinder — Free Keyword Research Tool | Discover Untapped Keywords & GEO Topics",
+    template: "%s | KeywordFinder",
   },
   description:
-    "Free keyword research tool for indie bloggers and niche site builders. Discover untapped long-tail keywords with real search volume and genuinely weak competition — no expensive tools required.",
+    "Free keyword research tool for indie bloggers, niche site builders, and content creators. Discover untapped long-tail keywords, AI-friendly search queries, and GEO-optimized topics with real search volume and genuinely weak competition. Find what your potential customers are searching for — no expensive tools required.",
   keywords: [
     "keyword research",
     "long-tail keywords",
@@ -28,11 +29,20 @@ export const metadata: Metadata = {
     "niche keywords",
     "blue ocean keywords",
     "low competition keywords",
+    "GEO optimization",
+    "AI search keywords",
+    "generative engine optimization",
+    "consumer search intent",
+    "content marketing strategy",
+    "keyword discovery tool",
+    "search volume analysis",
+    "competition analysis",
+    "SERP analysis",
   ],
   openGraph: {
-    title: "BlueOcean — Untapped Keywords Your Blog Can Actually Rank For",
+    title: "KeywordFinder — Free Keyword Research Tool | Discover Untapped Keywords & GEO Topics",
     description:
-      "Free keyword research for indie bloggers. Find long-tail keywords with real volume and weak competition — no expensive tools required.",
+      "Free keyword research for indie bloggers. Find long-tail keywords, AI-optimized search queries, and low-competition topics with real volume. Discover what your audience is searching for — no expensive tools required.",
     type: "website",
     locale: "en_US",
   },
@@ -56,6 +66,7 @@ export default function RootLayout({
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        <MonetagAd />
         <Analytics />
       </body>
     </html>
