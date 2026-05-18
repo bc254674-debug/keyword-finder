@@ -3,7 +3,6 @@ import Link from "next/link";
 import { getKeywordBySlug, getAllKeywordSlugs } from "@/lib/supabase";
 import { seedKeywords, seedCategories } from "@/lib/seed-data";
 import type { Keyword } from "@/lib/types";
-import AdSlot from "@/components/ads/AdSlot";
 import {
   formatNumber,
   trendIcon,
@@ -91,10 +90,10 @@ export default async function KeywordPage({ params }: Props) {
         description: `Keyword opportunity analysis for "${kw.keyword}". Search volume: ${formatNumber(kw.search_volume_estimate)}, competition: ${competitionLabel(kw.competition_score)}.`,
         datePublished: kw.created_at,
         dateModified: kw.last_updated,
-        author: { "@type": "Organization", name: "BlueOcean" },
+        author: { "@type": "Organization", name: "KeywordFinder" },
         mainEntityOfPage: {
           "@type": "WebPage",
-          "@id": `https://blueocean-keywords.vercel.app/keyword/${kw.slug}`,
+          "@id": `https://keywordfind.asia/keyword/${kw.slug}`,
         },
       },
       {
@@ -104,19 +103,19 @@ export default async function KeywordPage({ params }: Props) {
             "@type": "ListItem",
             position: 1,
             name: "Home",
-            item: "https://blueocean-keywords.vercel.app/",
+            item: "https://keywordfind.asia/",
           },
           {
             "@type": "ListItem",
             position: 2,
             name: catName,
-            item: `https://blueocean-keywords.vercel.app/category/${catSlug}`,
+            item: `https://keywordfind.asia/category/${catSlug}`,
           },
           {
             "@type": "ListItem",
             position: 3,
             name: kw.keyword,
-            item: `https://blueocean-keywords.vercel.app/keyword/${kw.slug}`,
+            item: `https://keywordfind.asia/keyword/${kw.slug}`,
           },
         ],
       },
@@ -335,8 +334,6 @@ export default async function KeywordPage({ params }: Props) {
               </div>
             </section>
 
-            <AdSlot position="large-rectangle" />
-
             {/* FAQ */}
             {kw.faq && kw.faq.length > 0 && (
               <section>
@@ -364,14 +361,10 @@ export default async function KeywordPage({ params }: Props) {
               </section>
             )}
 
-            <AdSlot position="leaderboard" />
           </div>
 
           {/* ── Sidebar ────────────────────────────────── */}
           <aside className="space-y-6">
-            <div className="hidden lg:block sticky top-24">
-              <AdSlot position="halfpage" className="mb-6" />
-            </div>
 
             {/* Current top domains */}
             <div className="bg-white rounded-2xl border border-zinc-200/80 p-5">

@@ -1,11 +1,11 @@
 import SearchBar from "@/components/ui/SearchBar";
 
 const popularTerms = [
-  "pet care",
-  "home workout",
-  "SaaS tools",
-  "healthy recipes",
-  "DIY crafts",
+  "best cat food for indoor cats",
+  "home workout for beginners",
+  "SaaS tools for small business",
+  "healthy recipes for weight loss",
+  "AI keyword research guide",
 ];
 
 export default function HeroSearch() {
@@ -30,6 +30,12 @@ export default function HeroSearch() {
         No expensive tools, no SEO degree required. Tell us your blog topic
         and discover long-tail keywords with real search volume and genuinely
         weak competition.
+      </p>
+
+      <p className="mt-4 text-base text-zinc-400 max-w-2xl mx-auto leading-relaxed">
+        Powered by GEO intelligence: we surface AI-friendly search queries,
+        consumer intent keywords, and question-based topics that ChatGPT,
+        Perplexity, and Google AI Overviews love to reference.
       </p>
 
       <div className="mt-10 max-w-lg mx-auto">

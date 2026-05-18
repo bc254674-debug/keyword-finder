@@ -20,7 +20,7 @@ export default function SearchBar({ large = false }: { large?: boolean }) {
         type="text"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        placeholder='What does your blog write about? e.g. "pet care", "SaaS reviews"...'
+        placeholder='What niche are you in? e.g. "cat food", "home fitness", "SaaS tools", "skincare routine"...'
         className={`w-full rounded-xl border border-zinc-300 bg-white px-4 text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all ${
           large ? "py-3.5 pr-16 text-base shadow-sm shadow-zinc-200/50" : "py-2 pr-12 text-sm"
         }`}

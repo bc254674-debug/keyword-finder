@@ -6,11 +6,13 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-5 py-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           <div>
-            <p className="font-semibold text-zinc-900 mb-2">BlueOcean</p>
+            <p className="font-semibold text-zinc-900 mb-2">KeywordFinder</p>
             <p className="text-sm text-zinc-500 leading-relaxed max-w-xs">
-              Discover untapped long-tail keywords with real search volume and low
-              competition. Built for indie bloggers, affiliate marketers, and niche
-              site builders.
+              Free keyword research tool for discovering untapped long-tail keywords,
+              AI-friendly search queries, and GEO-optimized topics with real search
+              volume and low competition. Built for indie bloggers, affiliate
+              marketers, niche site builders, and content creators who want to rank
+              everywhere — Google, ChatGPT, Perplexity, and beyond.
             </p>
           </div>
           <div>
@@ -25,14 +27,16 @@ export default function Footer() {
             <p className="font-semibold text-zinc-900 mb-2">About</p>
             <p className="text-sm text-zinc-500 leading-relaxed">
               We analyze millions of search queries to find blue-ocean
-              opportunities. Our algorithm scores each keyword by
-              search-volume-to-competition ratio, trend direction, and content
-              gap analysis.
+              opportunities, AI-optimized keywords, and consumer search intent
+              patterns. Our algorithm scores each keyword by
+              search-volume-to-competition ratio, GEO relevance, trend
+              direction, and content gap analysis — so you rank everywhere
+              your audience searches.
             </p>
           </div>
         </div>
         <div className="mt-10 pt-5 border-t border-zinc-100 text-center text-xs text-zinc-400">
-          &copy; {new Date().getFullYear()} BlueOcean. All rights reserved.
+          &copy; <span suppressHydrationWarning>{new Date().getFullYear()}</span> KeywordFinder. All rights reserved.
         </div>
       </div>
     </footer>

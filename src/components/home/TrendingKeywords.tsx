@@ -13,7 +13,7 @@ export default function TrendingKeywords({ keywords }: Props) {
     <section className="py-12 px-4 max-w-7xl mx-auto">
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-2xl font-bold tracking-tight text-zinc-900">
-          Trending Blue-Ocean Keywords
+          Trending Keywords — High Opportunity, Low Competition
         </h2>
         <Link
           href="/trending"

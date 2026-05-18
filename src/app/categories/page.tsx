@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { getCategories } from "@/lib/supabase";
 import { seedCategories } from "@/lib/seed-data";
 import CategoryGrid from "@/components/home/CategoryGrid";
-import AdSlot from "@/components/ads/AdSlot";
 
 export const metadata: Metadata = {
   title: "All Categories — Browse Keywords by Niche",
@@ -23,8 +22,6 @@ export default async function CategoriesPage() {
         Browse blue-ocean keywords organized by niche. Each category contains
         hand-picked keywords with low competition and real search volume.
       </p>
-
-      <AdSlot position="leaderboard" className="mb-10" />
 
       <CategoryGrid categories={displayCategories} />
     </div>

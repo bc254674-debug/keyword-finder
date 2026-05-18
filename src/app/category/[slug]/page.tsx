@@ -4,7 +4,6 @@ import { getKeywordsByCategory, getAllCategorySlugs } from "@/lib/supabase";
 import { seedCategories, seedKeywords } from "@/lib/seed-data";
 import KeywordCard from "@/components/keyword/KeywordCard";
 import Pagination from "@/components/ui/Pagination";
-import AdSlot from "@/components/ads/AdSlot";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -25,7 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const name = category?.name || slug.replace(/-/g, " ");
 
   return {
-    title: `${name} — Blue-Ocean Keywords`,
+    title: `${name} Keywords — Low Competition & High Opportunity | KeywordFinder`,
     description: `Discover untapped long-tail keywords in the ${name.toLowerCase()} niche. Low competition, real search volume, and content suggestions to help you rank.`,
   };
 }
@@ -60,17 +59,14 @@ export default async function CategoryPage({ params, searchParams }: Props) {
       </h1>
       <p className="text-gray-500 mb-8">
         {category?.description ||
-          `Blue-ocean keyword opportunities in ${categoryName.toLowerCase()}.`}
+          `Untapped, low-competition keyword opportunities in ${categoryName.toLowerCase()} — discover what your audience is searching for.`}
       </p>
 
-      <AdSlot position="leaderboard" className="mb-8" />
-
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {displayKeywords.slice((page - 1) * PER_PAGE, page * PER_PAGE).map((kw, i) => (
-          <>
-            <KeywordCard key={kw.id} keyword={kw} />
-            {i === 5 && <AdSlot position="rectangle" />}
-          </>
+        {displayKeywords.slice((page - 1) * PER_PAGE, page * PER_PAGE).map((kw) => (
+          <div key={kw.id}>
+            <KeywordCard keyword={kw} />
+          </div>
         ))}
       </div>
 

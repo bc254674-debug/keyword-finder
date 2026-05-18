@@ -17,10 +17,10 @@ export default function CategoryGrid({ categories }: Props) {
       <div className="flex items-end justify-between mb-8">
         <div>
           <h2 className="text-2xl font-bold tracking-tight text-zinc-900">
-            Browse by niche
+            Browse keywords by niche
           </h2>
           <p className="text-zinc-500 text-sm mt-1">
-            Keywords organized by market vertical
+            AI-optimized, consumer-intent keywords organized by market vertical
           </p>
         </div>
         <Link

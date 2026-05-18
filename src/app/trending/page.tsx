@@ -3,10 +3,9 @@ import { getKeywordsPaginated } from "@/lib/supabase";
 import { seedKeywords, seedCategories } from "@/lib/seed-data";
 import KeywordCard from "@/components/keyword/KeywordCard";
 import Pagination from "@/components/ui/Pagination";
-import AdSlot from "@/components/ads/AdSlot";
 
 export const metadata: Metadata = {
-  title: "Trending Blue-Ocean Keywords",
+  title: "Trending Keywords — High Opportunity, Low Competition | KeywordFinder",
   description:
     "Browse the hottest low-competition keywords with high ranking potential. Updated daily with fresh keyword opportunities across all niches.",
 };
@@ -75,7 +74,6 @@ export default async function TrendingPage({
           .map((kw, i) => (
             <div key={kw.id}>
               <KeywordCard keyword={kw} />
-              {i === 5 && <AdSlot position="rectangle" />}
             </div>
           ))}
       </div>
