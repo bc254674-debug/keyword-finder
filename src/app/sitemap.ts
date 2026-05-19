@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { getAllKeywordSlugs, getAllCategorySlugs } from "@/lib/supabase";
 import { seedKeywords, seedCategories } from "@/lib/seed-data";
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://keywordfinder.vercel.app";
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.keywordfind.asia";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [kwSlugs, catSlugs] = await Promise.all([
