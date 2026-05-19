@@ -2,19 +2,26 @@
 
 import Script from "next/script";
 
-const MONETAG_ZONE_ID = process.env.NEXT_PUBLIC_MONETAG_SITE_ID || "";
-const MULTITAG_SRC = "https://quge5.com/88/tag.min.js";
-
 export default function MonetagAd() {
-  if (!MONETAG_ZONE_ID) return null;
-
   return (
-    <Script
-      src={MULTITAG_SRC}
-      data-zone={MONETAG_ZONE_ID}
-      strategy="afterInteractive"
-      data-cfasync="false"
-      async
-    />
+    <>
+      {/* Push Notifications */}
+      <Script
+        src="https://5gvci.com/act/files/tag.min.js?z=11028376"
+        strategy="afterInteractive"
+        data-cfasync="false"
+        async
+      />
+
+      {/* In-Page Push */}
+      <Script id="inpage-push" strategy="afterInteractive">
+        {`(function(s){s.dataset.zone='11028381',s.src='https://nap5k.com/tag.min.js'})([document.documentElement,document.body].filter(Boolean).pop().appendChild(document.createElement('script')))`}
+      </Script>
+
+      {/* Vignette Banner */}
+      <Script id="vignette" strategy="afterInteractive">
+        {`(function(s){s.dataset.zone='11028383',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement,document.body].filter(Boolean).pop().appendChild(document.createElement('script')))`}
+      </Script>
+    </>
   );
 }
