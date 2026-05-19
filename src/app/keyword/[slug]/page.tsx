@@ -386,6 +386,12 @@ export default async function KeywordPage({ params }: Props) {
               </ul>
             </div>
 
+            {/* Adsterra Native Banner */}
+            <div
+              id="container-72262b8c4ce66778b048d44836af0444"
+              className="bg-white rounded-2xl border border-zinc-200/80 p-5"
+            />
+
             {/* Related keywords */}
             {relatedKws.length > 0 && (
               <div className="bg-white rounded-2xl border border-zinc-200/80 p-5">

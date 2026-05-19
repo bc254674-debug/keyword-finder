@@ -18,11 +18,6 @@ export default function MonetagAd() {
         {`(function(s){s.dataset.zone='11028381',s.src='https://nap5k.com/tag.min.js'})([document.documentElement,document.body].filter(Boolean).pop().appendChild(document.createElement('script')))`}
       </Script>
 
-      {/* Popunder */}
-      <Script id="popunder" strategy="afterInteractive">
-        {`(function(s){s.dataset.zone='11028848',s.src='https://al5sm.com/tag.min.js'})([document.documentElement,document.body].filter(Boolean).pop().appendChild(document.createElement('script')))`}
-      </Script>
-
       {/* Vignette Banner */}
       <Script id="vignette" strategy="afterInteractive">
         {`(function(s){s.dataset.zone='11028383',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement,document.body].filter(Boolean).pop().appendChild(document.createElement('script')))`}
