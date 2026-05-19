@@ -13,8 +13,40 @@ export default async function HomePage() {
   const displayCategories = categories.length > 0 ? categories : seedCategories;
   const displayTrending = trending.length > 0 ? trending : seedKeywords.filter((k) => k.is_trending).slice(0, 8);
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        name: "KeywordFinder",
+        url: "https://www.keywordfind.asia",
+        description:
+          "Free keyword research tool for discovering untapped long-tail keywords, AI-friendly search queries, and GEO-optimized topics.",
+        sameAs: ["https://github.com/bc254674-debug/keyword-finder"],
+      },
+      {
+        "@type": "WebSite",
+        name: "KeywordFinder",
+        url: "https://www.keywordfind.asia",
+        potentialAction: {
+          "@type": "SearchAction",
+          target: {
+            "@type": "EntryPoint",
+            urlTemplate:
+              "https://www.keywordfind.asia/trending?q={search_term_string}",
+          },
+          "query-input": "required name=search_term_string",
+        },
+      },
+    ],
+  };
+
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <HeroSearch />
 
       <div className="max-w-7xl mx-auto px-4 mb-4">

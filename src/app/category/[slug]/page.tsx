@@ -44,8 +44,45 @@ export default async function CategoryPage({ params, searchParams }: Props) {
       : seedKeywords.filter((k) => k.category_id === category?.id);
   const totalPages = Math.max(1, Math.ceil((total || displayKeywords.length) / PER_PAGE));
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        name: `${categoryName} Keywords — Blue-Ocean Keyword Opportunities`,
+        description:
+          category?.description ||
+          `Untapped, low-competition ${categoryName.toLowerCase()} keywords with real search volume and content suggestions.`,
+        url: `https://www.keywordfind.asia/category/${slug}`,
+        mainEntity: {
+          "@type": "ItemList",
+          itemListElement: displayKeywords
+            .slice(0, 20)
+            .map((kw: typeof displayKeywords[0], i: number) => ({
+              "@type": "ListItem",
+              position: i + 1,
+              url: `https://www.keywordfind.asia/keyword/${kw.slug}`,
+              name: kw.keyword,
+            })),
+        },
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: "https://www.keywordfind.asia/" },
+          { "@type": "ListItem", position: 2, name: "Categories", item: "https://www.keywordfind.asia/categories" },
+          { "@type": "ListItem", position: 3, name: categoryName, item: `https://www.keywordfind.asia/category/${slug}` },
+        ],
+      },
+    ],
+  };
+
   return (
     <div className="max-w-7xl mx-auto px-4 py-10">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <nav className="text-sm text-gray-400 mb-4" aria-label="Breadcrumb">
         <Link href="/" className="hover:text-blue-600">Home</Link>
         <span className="mx-2">/</span>

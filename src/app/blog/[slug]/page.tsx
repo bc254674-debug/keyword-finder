@@ -74,8 +74,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!post) return { title: "Post Not Found" };
 
   return {
-    title: post.title,
-    description: post.body[0].slice(0, 160),
+    title: `${post.title} | KeywordFinder Blog`,
+    description: post.body[0].slice(0, 157) + "...",
+    openGraph: {
+      title: post.title,
+      description: post.body[0].slice(0, 157) + "...",
+      type: "article",
+      publishedTime: post.date,
+      modifiedTime: post.date,
+    },
   };
 }
 
@@ -92,8 +99,39 @@ export default async function BlogPostPage({ params }: Props) {
     );
   }
 
+  const jsonLd = post
+    ? {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Article",
+            headline: post.title,
+            datePublished: post.date,
+            dateModified: post.date,
+            author: { "@type": "Organization", name: "KeywordFinder" },
+            publisher: { "@type": "Organization", name: "KeywordFinder", logo: { "@type": "ImageObject", url: "https://www.keywordfind.asia/favicon.ico" } },
+            mainEntityOfPage: { "@type": "WebPage", "@id": `https://www.keywordfind.asia/blog/${slug}` },
+          },
+          {
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: "https://www.keywordfind.asia/" },
+              { "@type": "ListItem", position: 2, name: "Blog", item: "https://www.keywordfind.asia/blog" },
+              { "@type": "ListItem", position: 3, name: post.title, item: `https://www.keywordfind.asia/blog/${slug}` },
+            ],
+          },
+        ],
+      }
+    : null;
+
   return (
     <article className="max-w-3xl mx-auto px-4 py-10">
+      {jsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      )}
       <nav className="text-sm text-gray-400 mb-6">
         <Link href="/" className="hover:text-blue-600">Home</Link>
         <span className="mx-2">/</span>

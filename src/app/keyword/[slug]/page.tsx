@@ -80,47 +80,47 @@ export default async function KeywordPage({ params }: Props) {
     )
     .slice(0, 5);
 
+  const BASE = "https://www.keywordfind.asia";
+
   // ── JSON-LD ────────────────────────────────────────────
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "AnalysisNewsArticle",
-        headline: `"${kw.keyword}" — Blue-Ocean Keyword Analysis`,
-        description: `Keyword opportunity analysis for "${kw.keyword}". Search volume: ${formatNumber(kw.search_volume_estimate)}, competition: ${competitionLabel(kw.competition_score)}.`,
-        datePublished: kw.created_at,
-        dateModified: kw.last_updated,
-        author: { "@type": "Organization", name: "KeywordFinder" },
-        mainEntityOfPage: {
-          "@type": "WebPage",
-          "@id": `https://keywordfind.asia/keyword/${kw.slug}`,
+  const jsonLdGraph: Record<string, unknown>[] = [
+    {
+      "@type": "AnalysisNewsArticle",
+      headline: `"${kw.keyword}" — Blue-Ocean Keyword Analysis`,
+      description: `Keyword opportunity analysis for "${kw.keyword}". Search volume: ${formatNumber(kw.search_volume_estimate)}, competition: ${competitionLabel(kw.competition_score)}.`,
+      datePublished: kw.created_at,
+      dateModified: kw.last_updated,
+      author: { "@type": "Organization", name: "KeywordFinder" },
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": `${BASE}/keyword/${kw.slug}`,
+      },
+    },
+    {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: `${BASE}/` },
+        { "@type": "ListItem", position: 2, name: catName, item: `${BASE}/category/${catSlug}` },
+        { "@type": "ListItem", position: 3, name: kw.keyword, item: `${BASE}/keyword/${kw.slug}` },
+      ],
+    },
+  ];
+
+  if (kw.faq && kw.faq.length > 0) {
+    jsonLdGraph.push({
+      "@type": "FAQPage",
+      mainEntity: kw.faq.map((item: { q: string; a: string }) => ({
+        "@type": "Question",
+        name: item.q,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: item.a,
         },
-      },
-      {
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          {
-            "@type": "ListItem",
-            position: 1,
-            name: "Home",
-            item: "https://keywordfind.asia/",
-          },
-          {
-            "@type": "ListItem",
-            position: 2,
-            name: catName,
-            item: `https://keywordfind.asia/category/${catSlug}`,
-          },
-          {
-            "@type": "ListItem",
-            position: 3,
-            name: kw.keyword,
-            item: `https://keywordfind.asia/keyword/${kw.slug}`,
-          },
-        ],
-      },
-    ],
-  };
+      })),
+    });
+  }
+
+  const jsonLd = { "@context": "https://schema.org", "@graph": jsonLdGraph };
 
   // ── Helpers ─────────────────────────────────────────────
   const oppTier =
