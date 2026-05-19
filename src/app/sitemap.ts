@@ -22,6 +22,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE_URL}/blog/what-are-blue-ocean-keywords`, lastModified: "2025-05-10", changeFrequency: "monthly", priority: 0.6 },
     { url: `${BASE_URL}/blog/how-to-find-low-competition-keywords`, lastModified: "2025-05-12", changeFrequency: "monthly", priority: 0.6 },
     { url: `${BASE_URL}/blog/content-strategy-for-niche-sites`, lastModified: "2025-05-14", changeFrequency: "monthly", priority: 0.6 },
+    { url: `${BASE_URL}/blog/geo-ai-search-keywords-guide`, lastModified: "2025-05-16", changeFrequency: "monthly", priority: 0.6 },
+    { url: `${BASE_URL}/blog/consumer-search-intent-keywords`, lastModified: "2025-05-17", changeFrequency: "monthly", priority: 0.6 },
+    { url: `${BASE_URL}/blog/free-keyword-research-no-paid-tools`, lastModified: "2025-05-19", changeFrequency: "monthly", priority: 0.6 },
+    { url: `${BASE_URL}/blog/what-is-keyword-difficulty-how-to-judge`, lastModified: "2025-05-20", changeFrequency: "monthly", priority: 0.6 },
+    { url: `${BASE_URL}/blog/internal-linking-for-seo-guide`, lastModified: "2025-05-22", changeFrequency: "monthly", priority: 0.6 },
     ...cSlugs.map((c: { slug: string }) => ({
       url: `${BASE_URL}/category/${c.slug}`,
       lastModified: new Date(),

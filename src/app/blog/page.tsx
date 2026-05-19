@@ -19,6 +19,27 @@ export const metadata: Metadata = {
 
 const posts = [
   {
+    slug: "internal-linking-for-seo-guide",
+    title: "Internal Linking for SEO: A Complete Guide for Niche Site Builders",
+    excerpt:
+      "The most underrated SEO tactic that's entirely within your control. Learn hub-and-spoke structures, anchor text strategy, and how to audit your internal links for quick ranking wins.",
+    date: "2025-05-22",
+  },
+  {
+    slug: "what-is-keyword-difficulty-how-to-judge",
+    title: "What Is Keyword Difficulty and How to Actually Judge If You Can Rank",
+    excerpt:
+      "Keyword difficulty scores from SEO tools can be misleading. Learn how to do your own SERP analysis and judge ranking feasibility with real accuracy — no expensive tools needed.",
+    date: "2025-05-20",
+  },
+  {
+    slug: "free-keyword-research-no-paid-tools",
+    title: "How to Do Keyword Research for Free: No Paid Tools Required",
+    excerpt:
+      "A complete free keyword research workflow using Google Autocomplete, People Also Ask, Reddit, Wikipedia, and free tools. Generate hundreds of keyword ideas without spending a dollar.",
+    date: "2025-05-19",
+  },
+  {
     slug: "consumer-search-intent-keywords",
     title: "Think Like Your Customer: Consumer Search Intent Keywords That Drive Sales",
     excerpt:
