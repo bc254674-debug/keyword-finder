@@ -4,6 +4,9 @@ const nextConfig: NextConfig = {
   images: {
     formats: ["image/webp"],
   },
+  experimental: {
+    staleTimes: { dynamic: 30, static: 180 },
+  },
   async headers() {
     return [
       {
