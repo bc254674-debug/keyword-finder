@@ -3,7 +3,6 @@ import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import MonetagAd from "@/components/ads/MonetagAd";
 import "@/styles/globals.css";
 
 const inter = Inter({
@@ -66,7 +65,6 @@ export default function RootLayout({
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
-        <MonetagAd />
         <Analytics />
       </body>
     </html>
