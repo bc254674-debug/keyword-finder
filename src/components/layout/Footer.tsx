@@ -21,6 +21,7 @@ export default function Footer() {
               <Link href="/trending" className="text-zinc-500 hover:text-zinc-700 transition-colors">Trending</Link>
               <Link href="/categories" className="text-zinc-500 hover:text-zinc-700 transition-colors">Categories</Link>
               <Link href="/blog" className="text-zinc-500 hover:text-zinc-700 transition-colors">Blog</Link>
+              <Link href="/privacy" className="text-zinc-500 hover:text-zinc-700 transition-colors">Privacy Policy</Link>
             </div>
           </div>
           <div>
