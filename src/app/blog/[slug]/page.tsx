@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { alternatesFor } from "@/lib/seo";
 
 const blogPosts: Record<string, { title: string; date: string; body: string[] }> = {
   "what-are-blue-ocean-keywords": {
@@ -113,6 +114,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${post.title} | KeywordFinder Blog`,
     description: post.body[0].slice(0, 157) + "...",
+    alternates: alternatesFor(`/blog/${slug}`),
     openGraph: {
       title: post.title,
       description: post.body[0].slice(0, 157) + "...",

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getKeywordsByCategory, getAllCategorySlugs } from "@/lib/supabase";
 import { seedCategories, seedKeywords } from "@/lib/seed-data";
+import { alternatesFor } from "@/lib/seo";
 import KeywordCard from "@/components/keyword/KeywordCard";
 import Pagination from "@/components/ui/Pagination";
 
@@ -26,6 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${name} Keywords — Low Competition & High Opportunity | KeywordFinder`,
     description: `Discover untapped long-tail keywords in the ${name.toLowerCase()} niche. Low competition, real search volume, and content suggestions to help you rank.`,
+    alternates: alternatesFor(`/category/${slug}`),
   };
 }
 

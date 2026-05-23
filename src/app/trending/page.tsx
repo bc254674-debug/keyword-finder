@@ -8,6 +8,10 @@ export const metadata: Metadata = {
   title: "Trending Keywords — High Opportunity, Low Competition | KeywordFinder",
   description:
     "Browse the hottest low-competition keywords with high ranking potential. Updated daily with fresh keyword opportunities across all niches.",
+  alternates: {
+    canonical: "/trending",
+    languages: { "en-US": "/trending", "x-default": "/trending" },
+  },
 };
 
 const PER_PAGE = 20;

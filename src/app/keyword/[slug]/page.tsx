@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getKeywordBySlug, getAllKeywordSlugs } from "@/lib/supabase";
 import { seedKeywords, seedCategories } from "@/lib/seed-data";
+import { alternatesFor } from "@/lib/seo";
 import type { Keyword } from "@/lib/types";
 import {
   formatNumber,
@@ -33,6 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `${keyword} — Keyword Analysis & Content Opportunity`,
     description: `Analyze "${keyword}" — monthly volume ${volume}, competition: ${competition}, opportunity: ${"★".repeat(stars)}. Get data-driven content suggestions to rank for this blue-ocean keyword.`,
     keywords: [keyword, "blue ocean keyword", "long-tail SEO", "content gap analysis", "low competition keyword"],
+    alternates: alternatesFor(`/keyword/${slug}`),
     openGraph: {
       title: `${keyword} — Blue-Ocean Keyword Analysis`,
       description: `Search volume: ${volume} · Competition: ${competition} · Opportunity: ${stars}/5. See why this keyword is a ranking opportunity.`,

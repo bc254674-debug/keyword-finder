@@ -1,8 +1,16 @@
+import type { Metadata } from "next";
 import { getCategories, getTrendingKeywords } from "@/lib/supabase";
 import { seedCategories, seedKeywords } from "@/lib/seed-data";
 import HeroSearch from "@/components/home/HeroSearch";
 import TrendingKeywords from "@/components/home/TrendingKeywords";
 import CategoryGrid from "@/components/home/CategoryGrid";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/",
+    languages: { "en-US": "/", "x-default": "/" },
+  },
+};
 
 export default async function HomePage() {
   const [categories, trending] = await Promise.all([

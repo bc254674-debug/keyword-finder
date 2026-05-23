@@ -7,6 +7,10 @@ export const metadata: Metadata = {
   title: "All Categories — Browse Keywords by Niche",
   description:
     "Browse blue-ocean keywords by niche. Find untapped long-tail keywords in health, finance, pets, food, tech, and more categories.",
+  alternates: {
+    canonical: "/categories",
+    languages: { "en-US": "/categories", "x-default": "/categories" },
+  },
 };
 
 export default async function CategoriesPage() {

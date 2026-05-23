@@ -15,6 +15,10 @@ export const metadata: Metadata = {
     "content marketing",
     "SEO tips",
   ],
+  alternates: {
+    canonical: "/blog",
+    languages: { "en-US": "/blog", "x-default": "/blog" },
+  },
 };
 
 const posts = [

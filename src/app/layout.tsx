@@ -14,6 +14,11 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.keywordfind.asia"),
+  alternates: {
+    canonical: "/",
+    languages: { "en-US": "/", "x-default": "/" },
+  },
   verification: {
     google: "2FL3q88IIuMuQOXKE1pDzkaTdDIJNF5DKUrbb_sZH4k",
   },

@@ -2,12 +2,17 @@ import type { MetadataRoute } from "next";
 import { getAllKeywordSlugs, getAllCategorySlugs } from "@/lib/supabase";
 import { seedKeywords, seedCategories } from "@/lib/seed-data";
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.keywordfind.asia";
+const BASE_URL = "https://www.keywordfind.asia";
+
+async function withTimeout<T>(promise: Promise<T>, ms: number, fallback: T): Promise<T> {
+  const timer = new Promise<T>((resolve) => setTimeout(() => resolve(fallback), ms));
+  return Promise.race([promise, timer]);
+}
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [kwSlugs, catSlugs] = await Promise.all([
-    getAllKeywordSlugs(),
-    getAllCategorySlugs(),
+    withTimeout(getAllKeywordSlugs(), 5000, []),
+    withTimeout(getAllCategorySlugs(), 5000, []),
   ]);
 
   const kSlugs = kwSlugs.length > 0 ? kwSlugs : seedKeywords.map((k) => ({ slug: k.slug, last_updated: k.last_updated }));

@@ -1,3 +1,13 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Privacy Policy | KeywordFinder",
+  alternates: {
+    canonical: "/privacy",
+    languages: { "en-US": "/privacy", "x-default": "/privacy" },
+  },
+};
+
 export default function PrivacyPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 py-10 prose prose-zinc">
