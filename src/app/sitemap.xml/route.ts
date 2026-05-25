@@ -1,5 +1,3 @@
-import { type NextRequest } from "next/server";
-
 const BASE_URL = "https://www.keywordfind.asia";
 
 interface Entry {
@@ -78,7 +76,7 @@ function buildXml(): string {
 
 const xmlContent = buildXml();
 
-export function GET(_request: NextRequest): Response {
+export function GET(): Response {
   return new Response(xmlContent, {
     headers: {
       "Content-Type": "application/xml; charset=utf-8",
@@ -87,4 +85,4 @@ export function GET(_request: NextRequest): Response {
   });
 }
 
-export const dynamic = "force-static";
+export const dynamic = "force-dynamic";
