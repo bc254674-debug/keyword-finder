@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { seedCategories } from "@/lib/seed-data";
 import CategoryGrid from "@/components/home/CategoryGrid";
 
+export const dynamic = "force-static";
+
 export const metadata: Metadata = {
   title: "All Categories — Browse Keywords by Niche",
   description:
