@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getKeywordBySlug, getAllKeywordSlugs } from "@/lib/supabase";
 import { seedKeywords, seedCategories } from "@/lib/seed-data";
 import { alternatesFor } from "@/lib/seo";
 import type { Keyword } from "@/lib/types";
@@ -17,8 +16,6 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-  const slugs = await getAllKeywordSlugs();
-  if (slugs.length > 0) return slugs.map((s: { slug: string }) => ({ slug: s.slug }));
   return seedKeywords.map((k) => ({ slug: k.slug }));
 }
 
@@ -47,9 +44,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function KeywordPage({ params }: Props) {
   const { slug } = await params;
-  const data = await getKeywordBySlug(slug);
   const kw: Keyword | null =
-    data || seedKeywords.find((k) => k.slug === slug) || null;
+    seedKeywords.find((k) => k.slug === slug) || null;
 
   if (!kw) {
     return (

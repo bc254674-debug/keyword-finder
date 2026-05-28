@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { getKeywordsPaginated } from "@/lib/supabase";
 import { seedKeywords, seedCategories } from "@/lib/seed-data";
 import KeywordCard from "@/components/keyword/KeywordCard";
 import Pagination from "@/components/ui/Pagination";
@@ -33,9 +32,7 @@ export default async function TrendingPage({
   const page = Math.max(1, parseInt(params.page || "1"));
   const query = params.q || "";
 
-  const { keywords, total } = await getKeywordsPaginated(page, PER_PAGE);
-
-  // Build display list with category names for matching
+  // Use seed data directly — no Supabase dependency
   const enriched = seedKeywords.map((k) => {
     const cat = seedCategories.find((c) => c.id === k.category_id);
     return { ...k, categoryName: cat?.name || "" };
@@ -45,15 +42,8 @@ export default async function TrendingPage({
     ? enriched.filter((k) => matchQuery(k.keyword, k.categoryName, query))
     : enriched;
 
-  const displayKeywords =
-    keywords.length > 0
-      ? keywords
-      : filtered;
-
-  const totalPages = Math.max(
-    1,
-    Math.ceil((total || displayKeywords.length) / PER_PAGE)
-  );
+  const displayKeywords = filtered;
+  const totalPages = Math.max(1, Math.ceil(displayKeywords.length / PER_PAGE));
 
   return (
     <div className="max-w-7xl mx-auto px-5 py-10">

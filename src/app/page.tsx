@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { getCategories, getTrendingKeywords } from "@/lib/supabase";
 import { seedCategories, seedKeywords } from "@/lib/seed-data";
 import HeroSearch from "@/components/home/HeroSearch";
 import TrendingKeywords from "@/components/home/TrendingKeywords";
@@ -13,13 +12,8 @@ export const metadata: Metadata = {
 };
 
 export default async function HomePage() {
-  const [categories, trending] = await Promise.all([
-    getCategories(),
-    getTrendingKeywords(8),
-  ]);
-
-  const displayCategories = categories.length > 0 ? categories : seedCategories;
-  const displayTrending = trending.length > 0 ? trending : seedKeywords.filter((k) => k.is_trending).slice(0, 8);
+  const displayCategories = seedCategories;
+  const displayTrending = seedKeywords.filter((k) => k.is_trending).slice(0, 8);
 
   const jsonLd = {
     "@context": "https://schema.org",

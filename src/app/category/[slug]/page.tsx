@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getKeywordsByCategory, getAllCategorySlugs } from "@/lib/supabase";
 import { seedCategories, seedKeywords } from "@/lib/seed-data";
 import { alternatesFor } from "@/lib/seo";
 import KeywordCard from "@/components/keyword/KeywordCard";
@@ -14,8 +13,6 @@ interface Props {
 const PER_PAGE = 20;
 
 export async function generateStaticParams() {
-  const slugs = await getAllCategorySlugs();
-  if (slugs.length > 0) return slugs.map((s: { slug: string }) => ({ slug: s.slug }));
   return seedCategories.map((c) => ({ slug: c.slug }));
 }
 
@@ -39,12 +36,8 @@ export default async function CategoryPage({ params, searchParams }: Props) {
   const category = seedCategories.find((c) => c.slug === slug);
   const categoryName = category?.name || slug.replace(/-/g, " ");
 
-  const { keywords, total } = await getKeywordsByCategory(slug, page, PER_PAGE);
-  const displayKeywords =
-    keywords.length > 0
-      ? keywords
-      : seedKeywords.filter((k) => k.category_id === category?.id);
-  const totalPages = Math.max(1, Math.ceil((total || displayKeywords.length) / PER_PAGE));
+  const displayKeywords = seedKeywords.filter((k) => k.category_id === category?.id);
+  const totalPages = Math.max(1, Math.ceil(displayKeywords.length / PER_PAGE));
 
   const jsonLd = {
     "@context": "https://schema.org",
